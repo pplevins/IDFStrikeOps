@@ -24,4 +24,6 @@ internal class Terrorist
     {
         Weapons.Remove(weapon);
     }
+
+    public void Eliminate() => IsAlive = false;
 }

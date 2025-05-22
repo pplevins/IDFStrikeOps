@@ -6,15 +6,18 @@ internal class M109Artillery : StrikeUnitBase, IStrikeUnit
 {
     protected M109Artillery(string name) : base(name)
     {
+        effectiveAgainst = [TargetType.Person];
+        ammoCapacity = 40;
+        fuelSupply = 100;
     }
 
-    public string Name => throw new NotImplementedException();
+    public string Name => name;
 
-    public int AmmoCapacity => throw new NotImplementedException();
+    public int AmmoCapacity => ammoCapacity;
 
-    public double FuelSupply => throw new NotImplementedException();
+    public double FuelSupply => fuelSupply;
 
-    public TargetType[] EffectiveAgainst => throw new NotImplementedException();
+    public TargetType[] EffectiveAgainst => effectiveAgainst;
 
     public StrikeReport GenerateReport(bool strikeSucceeded)
     {

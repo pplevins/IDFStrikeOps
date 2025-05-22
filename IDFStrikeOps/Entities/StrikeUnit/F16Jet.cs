@@ -6,15 +6,18 @@ internal class F16Jet : StrikeUnitBase, IStrikeUnit
 {
     protected F16Jet(string name) : base(name)
     {
+        ammoCapacity = 8;
+        fuelSupply = 1000;
+        effectiveAgainst = [TargetType.Building];
     }
 
-    public string Name => throw new NotImplementedException();
+    public string Name => name;
 
-    public int AmmoCapacity => throw new NotImplementedException();
+    public int AmmoCapacity => ammoCapacity;
 
-    public double FuelSupply => throw new NotImplementedException();
+    public double FuelSupply => fuelSupply;
 
-    public TargetType[] EffectiveAgainst => throw new NotImplementedException();
+    public TargetType[] EffectiveAgainst => effectiveAgainst;
 
     public StrikeReport GenerateReport(bool strikeSucceeded)
     {
