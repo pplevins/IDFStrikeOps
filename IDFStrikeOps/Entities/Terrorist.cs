@@ -2,7 +2,7 @@
 
 internal class Terrorist
 {
-    string Name { get; set; }
+    public string Name { get; set; }
     TerroristRank Rank { get; set; }
     bool IsAlive { get; set; }
     List<WeaponsType> Weapons { get; }
@@ -13,6 +13,14 @@ internal class Terrorist
         IsAlive = isAlive;
         Rank = rank;
         Weapons = [];
+    }
+
+    public override string ToString()
+    {
+        return $"Hamas Terrorist:\nName: {Name}\nRank: {Rank}\nStatus: " 
+            + (IsAlive ? "Alive\n" : "Dead\n")
+            + "Armed with:\n"
+            + string.Join(", ", Weapons);
     }
 
     public void AddWeapon(WeaponsType weapon)

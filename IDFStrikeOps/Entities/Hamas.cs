@@ -12,4 +12,6 @@ internal class Hamas
         CurrentCommander = currentCommander;
         this.Terrorists = [];
     }
+
+    public void AddTerrorist(Terrorist terrorist) => Terrorists.Add(terrorist);
 }

@@ -1,3 +1,5 @@
-﻿internal class SimulationMenu
+﻿namespace IDFStrikeOps.Simulation;
+
+internal class SimulationMenu
 {
 }

@@ -4,7 +4,7 @@ namespace IDFStrikeOps.Entities.StrikeUnit;
 
 internal class M109Artillery : StrikeUnitBase, IStrikeUnit
 {
-    protected M109Artillery(string name) : base(name)
+    public M109Artillery(string name) : base(name)
     {
         effectiveAgainst = [TargetType.Person];
         ammoCapacity = 40;

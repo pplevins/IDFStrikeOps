@@ -12,4 +12,11 @@ internal class StrikeUnitBase
         this.name = name;
         effectiveAgainst = [];
     }
+
+    public override string ToString()
+    {
+        return $"Strike Unit type: {this.GetType()}\nName: {name}\n"
+            + $"Ammunition Capacity: {ammoCapacity} Strikes\n" 
+            + $"Effective against: {string.Join(", ", effectiveAgainst)}";
+    }
 }

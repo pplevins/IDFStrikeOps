@@ -4,7 +4,7 @@ namespace IDFStrikeOps.Entities.StrikeUnit;
 
 internal class F16Jet : StrikeUnitBase, IStrikeUnit
 {
-    protected F16Jet(string name) : base(name)
+    public F16Jet(string name) : base(name)
     {
         ammoCapacity = 8;
         fuelSupply = 1000;

@@ -8,10 +8,10 @@ internal class Aman
     Dictionary<string, List<IntelligenceMessage>> TerroristIntells { get; set; }
     IIntelAnalyzer IntelAnalyzer { get; }
 
-    public Aman() 
+    public Aman(IIntelAnalyzer analyzer) 
     {
         TerroristIntells = [];
-        IntelAnalyzer = new IntelService();
+        IntelAnalyzer = analyzer;
     }
     // TODO: Check correctness at runtime.
     public void AddIntel(string terrorist, IntelligenceMessage intel) => TerroristIntells[terrorist].Add(intel);
