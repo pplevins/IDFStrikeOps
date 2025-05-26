@@ -1,12 +1,12 @@
 ﻿using IDFStrikeOps.Interfaces;
-using IDFStrikeOps.Services;
+using System.ComponentModel.Design;
 
 namespace IDFStrikeOps.Entities;
 
 internal class Aman
 {
     Dictionary<string, List<IntelligenceMessage>> TerroristIntells { get; set; }
-    IIntelAnalyzer IntelAnalyzer { get; }
+    public IIntelAnalyzer IntelAnalyzer { get; }
 
     public Aman(IIntelAnalyzer analyzer) 
     {
@@ -14,5 +14,18 @@ internal class Aman
         IntelAnalyzer = analyzer;
     }
     // TODO: Check correctness at runtime.
-    public void AddIntel(string terrorist, IntelligenceMessage intel) => TerroristIntells[terrorist].Add(intel);
+    public void AddIntel(string terrorist, IntelligenceMessage intel)
+    {
+        if (TerroristIntells.ContainsKey(terrorist))
+            TerroristIntells[terrorist].Add(intel);
+        else
+        {
+            TerroristIntells[terrorist] = [intel];
+        }
+    }
+
+    public string GetMostTrackedTerrorist()
+    {
+        return IntelAnalyzer.GetMostTrackedTerrorist(TerroristIntells);
+    }
 }

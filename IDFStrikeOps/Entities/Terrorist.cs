@@ -3,9 +3,9 @@
 internal class Terrorist
 {
     public string Name { get; set; }
-    TerroristRank Rank { get; set; }
-    bool IsAlive { get; set; }
-    List<WeaponsType> Weapons { get; }
+    public TerroristRank Rank { get; set; }
+    public bool IsAlive { get; set; }
+    public List<WeaponsType> Weapons { get; }
 
     public Terrorist(string name, TerroristRank rank = TerroristRank.Collaborator, bool isAlive = true) 
     {

@@ -14,4 +14,10 @@ internal class Hamas
     }
 
     public void AddTerrorist(Terrorist terrorist) => Terrorists.Add(terrorist);
+
+    public Terrorist GetTerroristByName(string name)
+    {
+        return Terrorists.Where(t => t.Name == name && t.IsAlive).FirstOrDefault() 
+            ?? throw new NullReferenceException($"Terrorist with the name {name} doesn't exist or he's dead!");
+    }
 }

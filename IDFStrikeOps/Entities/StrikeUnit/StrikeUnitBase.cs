@@ -15,7 +15,7 @@ internal class StrikeUnitBase
 
     public override string ToString()
     {
-        return $"Strike Unit type: {this.GetType()}\nName: {name}\n"
+        return $"Strike Unit type: {this.GetType().Name}\nName: {name}\n"
             + $"Ammunition Capacity: {ammoCapacity} Strikes\n" 
             + $"Effective against: {string.Join(", ", effectiveAgainst)}";
     }
