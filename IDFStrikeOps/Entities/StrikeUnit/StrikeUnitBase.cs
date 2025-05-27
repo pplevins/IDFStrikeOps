@@ -1,5 +1,8 @@
 ﻿namespace IDFStrikeOps.Entities.StrikeUnit;
 
+/// <summary>
+/// A base class for strike units for shared functionality and behaviour.
+/// </summary>
 internal class StrikeUnitBase
 {
     protected string name;
@@ -7,12 +10,20 @@ internal class StrikeUnitBase
     protected double fuelSupply;
     protected TargetType[] effectiveAgainst;
 
+    /// <summary>
+    /// Constractor for strike unit.
+    /// </summary>
+    /// <param name="name">Name for the name property.</param>
     protected StrikeUnitBase(string name)
     {
         this.name = name;
         effectiveAgainst = [];
     }
 
+    /// <summary>
+    /// Basic logic of striking, shared by all strike units.
+    /// </summary>
+    /// <returns>true in case of target elimination and mission succses, false otherwise.</returns>
     protected bool StrikeLogic()
     {
         Random random = new();
@@ -25,6 +36,10 @@ internal class StrikeUnitBase
         return result;
     }
 
+    /// <summary>
+    /// String represantation of strike unit, overrides toString.
+    /// </summary>
+    /// <returns>represantation of a strike unit instance.</returns>
     public override string ToString()
     {
         return $"Strike Unit type: {this.GetType().Name}\nName: {name}\n"

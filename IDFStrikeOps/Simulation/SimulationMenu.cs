@@ -69,7 +69,9 @@ internal class SimulationMenu
         Console.WriteLine($"The location type of the target is {location}.");
         IStrikeUnit unit = InputStrikeUnit(location);
 
-        return s_idf.OperateStrike(unit, target, officerName);
+        StrikeReport report = s_idf.OperateStrike(unit, target, officerName);
+        s_idf.AddStrikeReport(report);
+        return report;
     }
 
     private static void Menu()

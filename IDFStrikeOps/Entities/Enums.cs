@@ -1,5 +1,8 @@
 ﻿namespace IDFStrikeOps.Entities;
 
+/// <summary>
+/// Enum for representing terrorist rank
+/// </summary>
 public enum TerroristRank
 {
     Collaborator = 1,
@@ -9,6 +12,9 @@ public enum TerroristRank
     Commander
 }
 
+/// <summary>
+/// Enum for representing target type location.
+/// </summary>
 public enum TargetType
 {
     Person,
@@ -16,6 +22,9 @@ public enum TargetType
     Building
 }
 
+/// <summary>
+/// Enum for representing weapons in terrorist arsenal.
+/// </summary>
 public enum WeaponsType
 {
     Knife = 1,

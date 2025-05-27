@@ -1,5 +1,8 @@
 ﻿namespace IDFStrikeOps.Entities;
 
+/// <summary>
+/// Class representing intelligence message on a terrorist.
+/// </summary>
 internal class IntelligenceMessage
 {
     Terrorist AssociatedTerrorist { get; }
@@ -18,6 +21,12 @@ internal class IntelligenceMessage
         }
     }
 
+    /// <summary>
+    /// Constructor for the intelligence message.
+    /// </summary>
+    /// <param name="terrorist">Associated terrorist</param>
+    /// <param name="targetType">location type of the target.</param>
+    /// <param name="confidence">confidence score of the intel.</param>
     public IntelligenceMessage(Terrorist terrorist, TargetType targetType, int confidence = 100)
     {
         AssociatedTerrorist = terrorist;
