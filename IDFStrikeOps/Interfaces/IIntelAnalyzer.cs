@@ -8,5 +8,5 @@ internal interface IIntelAnalyzer
 
     public string PrioritizeTarget(List<Terrorist> terrorists);
 
-    public TargetType GetLastKnownLocation(Terrorist terrorist);
+    public TargetType? GetLastKnownLocation(Terrorist terrorist, Dictionary<string, List<IntelligenceMessage>> messages);
 }

@@ -5,9 +5,13 @@ namespace IDFStrikeOps.Services;
 
 internal class IntelService : IIntelAnalyzer
 {
-    public TargetType GetLastKnownLocation(Terrorist terrorist)
+    public TargetType? GetLastKnownLocation(Terrorist terrorist, Dictionary<string, List<IntelligenceMessage>> messages)
     {
-        throw new NotImplementedException();
+        return messages
+            .Where(t => t.Key == terrorist.Name)
+            .FirstOrDefault()
+            .Value.OrderByDescending(t => t.TimeStamp)
+            .FirstOrDefault()!.LocationType;
     }
 
     public string GetMostTrackedTerrorist(Dictionary<string, List<IntelligenceMessage>> messages)

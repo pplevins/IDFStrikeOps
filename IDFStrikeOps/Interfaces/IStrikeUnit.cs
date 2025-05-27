@@ -10,8 +10,7 @@ internal interface IStrikeUnit
     TargetType[] EffectiveAgainst { get; }
 
     bool Strike();
-
     void Refuel(double amount);
     bool IsEffective(TargetType target);
-    StrikeReport GenerateReport(bool strikeSucceeded);
+    bool IsFunctional();
 }

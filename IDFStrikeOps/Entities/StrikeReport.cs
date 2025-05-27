@@ -1,6 +1,16 @@
-﻿namespace IDFStrikeOps.Entities;
+﻿using IDFStrikeOps.Interfaces;
 
-internal class StrikeReport
+namespace IDFStrikeOps.Entities;
+
+internal record StrikeReport
+(
+    string TerroristName,
+    DateTime ExecutionTime,
+    string OfficerName,
+    IStrikeUnit StrikeUnitUsed,
+    bool Success,
+    int RemainingAmmo
+)
 {
-
+    
 }

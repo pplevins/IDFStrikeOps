@@ -15,27 +15,34 @@ internal class F16Jet : StrikeUnitBase, IStrikeUnit
 
     public int AmmoCapacity => ammoCapacity;
 
-    public double FuelSupply => fuelSupply;
+    public double FuelSupply 
+    { 
+        get => fuelSupply;
+        set => fuelSupply = value;
+    }
 
     public TargetType[] EffectiveAgainst => effectiveAgainst;
 
-    public StrikeReport GenerateReport(bool strikeSucceeded)
-    {
-        throw new NotImplementedException();
-    }
-
     public bool IsEffective(TargetType target)
     {
-        throw new NotImplementedException();
+        return EffectiveAgainst.Contains(target);
+    }
+
+    public bool IsFunctional()
+    {
+        if (FuelSupply < 300)
+            Refuel(1000 - FuelSupply);
+        return AmmoCapacity >= 3;
     }
 
     public void Refuel(double value)
     {
-        throw new NotImplementedException();
+        FuelSupply += value;
     }
 
     public bool Strike()
     {
-        throw new NotImplementedException();
+        FuelSupply -= 100;
+        return this.StrikeLogic();
     }
 }

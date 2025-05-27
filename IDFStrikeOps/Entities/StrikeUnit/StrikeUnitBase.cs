@@ -13,6 +13,18 @@ internal class StrikeUnitBase
         effectiveAgainst = [];
     }
 
+    protected bool StrikeLogic()
+    {
+        Random random = new();
+        bool result = false;
+        for (int i = 0; i < 3 && !result && ammoCapacity > 0; i++)
+        {
+            ammoCapacity--;
+            result = Convert.ToBoolean(random.Next(2));
+        }
+        return result;
+    }
+
     public override string ToString()
     {
         return $"Strike Unit type: {this.GetType().Name}\nName: {name}\n"

@@ -3,8 +3,8 @@
 internal class IntelligenceMessage
 {
     Terrorist AssociatedTerrorist { get; }
-    TargetType LocationType { get; }
-    DateTime TimeStamp { get; }
+    public TargetType LocationType { get; }
+    public DateTime TimeStamp { get; }
     private int _confidenceScore;
     public int ConfidenceScore 
     {

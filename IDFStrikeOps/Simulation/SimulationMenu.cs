@@ -1,4 +1,5 @@
 ﻿using IDFStrikeOps.Entities;
+using IDFStrikeOps.Interfaces;
 using IDFStrikeOps.Services;
 
 namespace IDFStrikeOps.Simulation;
@@ -14,6 +15,61 @@ internal class SimulationMenu
         string terroristName = s_aman.GetMostTrackedTerrorist();
         Terrorist terrorist = s_hamas.GetTerroristByName(terroristName);
         Console.WriteLine($"The most tracked terrorist is\n{terrorist}");
+    }
+
+    private static (Terrorist, TargetType) InputTarget()
+    {
+        Terrorist? target = null;
+        TargetType? location = null;
+        do
+        {
+            try
+            {
+                Console.Write("Enter target name: ");
+                string targetName = Console.ReadLine() ?? throw new ArgumentNullException("No name was entered");
+                target = s_hamas.GetTerroristByName(targetName);
+                location = s_aman.GetLastKnownLocation(target);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        while (target == null || location == null);
+        return (target, location ?? throw new NullReferenceException("no last known location for the target!"));
+    }
+
+    private static IStrikeUnit InputStrikeUnit(TargetType location)
+    {
+        IStrikeUnit? unit = null;
+        do
+        {
+            try
+            {
+                Console.WriteLine("Select strike unit for the strike:");
+                s_idf.GetStrikeUnitsList();
+                string unitName = Console.ReadLine() ?? throw new ArgumentNullException("No name was entered");
+                unit = s_idf.GetStrikeUnitByName(unitName);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        while (unit == null || !unit.IsEffective(location) || !unit.IsFunctional());
+        return unit;
+    }
+
+    private static StrikeReport OperateStrike()
+    {
+        Console.Write("Enter your name: ");
+        string officerName = Console.ReadLine() ?? throw new ArgumentNullException("No name was entered");
+        var (target, location) = InputTarget();
+
+        Console.WriteLine($"The location type of the target is {location}.");
+        IStrikeUnit unit = InputStrikeUnit(location);
+
+        return s_idf.OperateStrike(unit, target, officerName);
     }
 
     private static void Menu()
@@ -48,6 +104,7 @@ internal class SimulationMenu
                             Console.WriteLine(s_aman.IntelAnalyzer.PrioritizeTarget(s_hamas.Terrorists));
                             break;
                         case 4:
+                            Console.WriteLine(OperateStrike());
                             break;
                         default:
                             Console.WriteLine("it must be a number between 0-4!");

@@ -15,27 +15,33 @@ internal class M109Artillery : StrikeUnitBase, IStrikeUnit
 
     public int AmmoCapacity => ammoCapacity;
 
-    public double FuelSupply => fuelSupply;
-
-    public TargetType[] EffectiveAgainst => effectiveAgainst;
-
-    public StrikeReport GenerateReport(bool strikeSucceeded)
+    public double FuelSupply
     {
-        throw new NotImplementedException();
+        get => fuelSupply;
+        set => fuelSupply = value;
     }
+    public TargetType[] EffectiveAgainst => effectiveAgainst;
 
     public bool IsEffective(TargetType target)
     {
-        throw new NotImplementedException();
+        return EffectiveAgainst.Contains(target);
+    }
+
+    public bool IsFunctional()
+    {
+        if (FuelSupply < 20)
+            Refuel(100 - FuelSupply);
+        return AmmoCapacity >= 3;
     }
 
     public void Refuel(double value)
     {
-        throw new NotImplementedException();
+        FuelSupply += value;
     }
 
     public bool Strike()
     {
-        throw new NotImplementedException();
+        FuelSupply -= 10;
+        return this.StrikeLogic();
     }
 }

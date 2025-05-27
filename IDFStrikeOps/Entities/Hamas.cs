@@ -17,7 +17,9 @@ internal class Hamas
 
     public Terrorist GetTerroristByName(string name)
     {
-        return Terrorists.Where(t => t.Name == name && t.IsAlive).FirstOrDefault() 
+        return Terrorists
+            .Where(t => t.Name.Equals(name, StringComparison.CurrentCultureIgnoreCase) && t.IsAlive)
+            .FirstOrDefault() 
             ?? throw new NullReferenceException($"Terrorist with the name {name} doesn't exist or he's dead!");
     }
 }
