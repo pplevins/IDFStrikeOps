@@ -24,16 +24,30 @@ internal class IntelService : IIntelAnalyzer
         return messages.Aggregate((x, y) => x.Value.Count > y.Value.Count ? x : y).Key;
     }
 
+    /// <summary>
+    /// Calculating the quality score (dangerous level) of a terrorist.
+    /// </summary>
+    /// <param name="terrorist">Terrorist to assess.</param>
+    /// <returns>The quality score.</returns>
+    private int CalcQualityScore(Terrorist terrorist)
+    {
+        return (int)terrorist.Rank * ((int)terrorist.Weapons.Aggregate((x, y) => (int)x + y));
+    }
+
     // <inheridoc/>
     public string PrioritizeTarget(List<Terrorist> terrorists)
     {
-        // TODO : Seperate the function to prioritizing logic and the rest.
         string result = "The most dangerous terrorist is:\n";
         int scoreResult = 0;
+        IEnumerable<Terrorist> liveTerrorists = terrorists.Where(t => t.IsAlive);
+        
+        if (terrorists.Count == 0)
+            return "No live terrorist in the organization.";
+
         Terrorist? mostDangerous = terrorists.FirstOrDefault() ?? null;
-        foreach (var terrorist in terrorists)
+        foreach (var terrorist in liveTerrorists)
         {
-            int QualityScore = (int)terrorist.Rank * ((int)terrorist.Weapons.Aggregate((x, y) => (int)x + y));
+            int QualityScore = CalcQualityScore(terrorist);
             if (QualityScore > scoreResult)
             {
                 scoreResult = QualityScore;

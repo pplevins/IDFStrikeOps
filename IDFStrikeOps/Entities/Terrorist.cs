@@ -55,19 +55,13 @@ internal class Terrorist
     /// Adding weapon to the arsenal.
     /// </summary>
     /// <param name="weapon">Weapon to add.</param>
-    public void AddWeapon(WeaponsType weapon)
-    {
-        Weapons.Add(weapon);
-    }
+    public void AddWeapon(WeaponsType weapon) => Weapons.Add(weapon);
 
     /// <summary>
     /// Adding weapon to the arsenal.
     /// </summary>
     /// <param name="weapon">Weapon to add.</param>
-    public void DeleteWeapon(WeaponsType weapon)
-    {
-        Weapons.Remove(weapon);
-    }
+    public void DeleteWeapon(WeaponsType weapon) => Weapons.Remove(weapon);
 
     /// <summary>
     /// Eliminating terrorist.
