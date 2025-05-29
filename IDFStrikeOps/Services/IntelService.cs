@@ -3,8 +3,12 @@ using IDFStrikeOps.Interfaces;
 
 namespace IDFStrikeOps.Services;
 
+/// <summary>
+/// A service class for the intelligence services.
+/// </summary>
 internal class IntelService : IIntelAnalyzer
 {
+    // <inheridoc/>
     public TargetType? GetLastKnownLocation(Terrorist terrorist, Dictionary<string, List<IntelligenceMessage>> messages)
     {
         return messages
@@ -14,13 +18,16 @@ internal class IntelService : IIntelAnalyzer
             .FirstOrDefault()!.LocationType;
     }
 
+    // <inheridoc/>
     public string GetMostTrackedTerrorist(Dictionary<string, List<IntelligenceMessage>> messages)
     {
         return messages.Aggregate((x, y) => x.Value.Count > y.Value.Count ? x : y).Key;
     }
 
+    // <inheridoc/>
     public string PrioritizeTarget(List<Terrorist> terrorists)
     {
+        // TODO : Seperate the function to prioritizing logic and the rest.
         string result = "The most dangerous terrorist is:\n";
         int scoreResult = 0;
         Terrorist? mostDangerous = terrorists.FirstOrDefault() ?? null;

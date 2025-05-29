@@ -60,7 +60,7 @@ internal class Terrorist
         Weapons.Add(weapon);
     }
 
-    // <summary>
+    /// <summary>
     /// Adding weapon to the arsenal.
     /// </summary>
     /// <param name="weapon">Weapon to add.</param>
@@ -69,5 +69,8 @@ internal class Terrorist
         Weapons.Remove(weapon);
     }
 
+    /// <summary>
+    /// Eliminating terrorist.
+    /// </summary>
     public void Eliminate() => IsAlive = false;
 }

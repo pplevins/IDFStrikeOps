@@ -3,6 +3,9 @@ using IDFStrikeOps.Entities.StrikeUnit;
 
 namespace IDFStrikeOps.Simulation;
 
+/// <summary>
+/// An utillity class to initialize all the data for the simulation.
+/// </summary>
 internal static class SimulationInitializer
 {
     private static Hamas? s_hamas;
@@ -25,12 +28,20 @@ internal static class SimulationInitializer
         "Yahya Ayyash"
         ];
 
-
+    /// <summary>
+    /// Generating a random number in a given range.
+    /// </summary>
+    /// <param name="min">Minimum value (included)</param>
+    /// <param name="max">Max value (excluded)</param>
+    /// <returns>The random number.</returns>
     private static int GenerateRandom(int min, int max)
     {
         return s_rand.Next(min, max);
     }
     
+    /// <summary>
+    /// Creating the terrorist list.
+    /// </summary>
     private static void CreateTerrorists()
     {
         int terroristsCount = GenerateRandom(5, 11);
@@ -48,6 +59,9 @@ internal static class SimulationInitializer
         }
     }
 
+    /// <summary>
+    /// Creating the strike unit list.
+    /// </summary>
     private static void CreateStrikeUnits()
     {
         s_idf!.AddStrikeUnit(new F16Jet("Bird"));
@@ -55,6 +69,9 @@ internal static class SimulationInitializer
         s_idf!.AddStrikeUnit(new ZikDrone("Zik"));
     }
 
+    /// <summary>
+    /// Creating the intelligence messages archive.
+    /// </summary>
     private static void CreateIntelMessages()
     {
         int messagesNum = GenerateRandom(10, 20);
@@ -65,6 +82,13 @@ internal static class SimulationInitializer
         }
     }
 
+    /// <summary>
+    /// Initializing the simulation data.
+    /// </summary>
+    /// <param name="hamas">The hamas instance to initialize.</param>
+    /// <param name="idf">The IDF instance to initialize.</param>
+    /// <param name="aman">The AMAN instance to initialize.</param>
+    /// <exception cref="NullReferenceException">In case one of the arguments coming null.</exception>
     public static void Init(Hamas hamas, IDF idf, Aman aman)
     {
         s_hamas = hamas ?? throw new NullReferenceException("Hamas object can not be null!");

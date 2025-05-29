@@ -4,12 +4,18 @@ using IDFStrikeOps.Services;
 
 namespace IDFStrikeOps.Simulation;
 
+/// <summary>
+/// A manager class for the simulation.
+/// </summary>
 internal class SimulationMenu
 {
     static readonly Hamas s_hamas = new("Mohammed Sinwar");
     static readonly IDF s_idf = new("Eyal Zamir");
     static readonly Aman s_aman = new(new IntelService());
 
+    /// <summary>
+    /// Printing the most tracked terrorist data.
+    /// </summary>
     private static void MostTrackedTerroristOperation()
     {
         string terroristName = s_aman.GetMostTrackedTerrorist();
@@ -17,6 +23,12 @@ internal class SimulationMenu
         Console.WriteLine($"The most tracked terrorist is\n{terrorist}");
     }
 
+    /// <summary>
+    /// Inputing terrorist target.
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="ArgumentNullException"></exception>
+    /// <exception cref="NullReferenceException"></exception>
     private static (Terrorist, TargetType) InputTarget()
     {
         Terrorist? target = null;
@@ -39,6 +51,12 @@ internal class SimulationMenu
         return (target, location ?? throw new NullReferenceException("no last known location for the target!"));
     }
 
+    /// <summary>
+    /// Inputting strike unit form the user.
+    /// </summary>
+    /// <param name="location">Location type for the strike unit.</param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentNullException"></exception>
     private static IStrikeUnit InputStrikeUnit(TargetType location)
     {
         IStrikeUnit? unit = null;
@@ -60,6 +78,11 @@ internal class SimulationMenu
         return unit;
     }
 
+    /// <summary>
+    /// Operating the strike operation in the simulation.
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="ArgumentNullException"></exception>
     private static StrikeReport OperateStrike()
     {
         Console.Write("Enter your name: ");
@@ -74,6 +97,9 @@ internal class SimulationMenu
         return report;
     }
 
+    /// <summary>
+    /// Displaying the menu to the user.
+    /// </summary>
     private static void Menu()
     {
         Console.WriteLine("Welcome to the IDF Strike Operation System!");
@@ -127,6 +153,9 @@ internal class SimulationMenu
         } while (choice != 0);
     }
 
+    /// <summary>
+    /// Running point for the simulation.
+    /// </summary>
     public static void Run()
     {
         SimulationInitializer.Init(s_hamas, s_idf, s_aman);
